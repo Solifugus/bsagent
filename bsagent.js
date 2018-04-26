@@ -22,8 +22,9 @@ function BSAgent( script ) {
 		{ syntax:/group\s+(.+):(.*)/i,                       name:'group' },
 		{ syntax:/conjugate\s+"([^"]*)"\s+to\s+"([^"]*)"/i,  name:'conjugate' },
 		{ syntax:/always\s+recall\s+(.*)/i,                  name:'always recall' },
-		{ syntax:/respond to\s*:(.*)/i,                      name:'recognizer' },
-		{ syntax:/condition\s*:(.*)/i,                       name:'reaction' },
+		{ syntax:/upon hearing\s*:(.*)/i,                    name:'recognizer' },
+		{ syntax:/consider if\s*:(.*)/i,                     name:'reaction' },
+		{ syntax:/if\s*:(.*)/i,                              name:'reaction' },    // TODO: not choice if true
 		{ syntax:/say\s+"([^"]*)"/i,                         name:'say' },
 		{ syntax:/remember\s+"([^"]*)"/i,                    name:'remember' },
 		{ syntax:/forget\s+"([^"]*)"/i,                      name:'forget' },

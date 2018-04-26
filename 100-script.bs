@@ -45,38 +45,38 @@
 	Always Recall them
 
 	-- Small Talk: Greetings & Getting to Know Each Other
-	Respond To: ~new session
+	Upon Hearing: ~new session
 		say "Why, hello."
 		remember "said hello to [user]"
 	
-	Respond To: Hello.
-	Condition: "[user] said hello" = 0
+	Upon Hearing: Hello.
+	Consider If: "[user] said hello" = 0
 		say "Hello, how are you?"
 		remember "[user] said hello."
 		expect "good" as "I am well"
 		expect "ok" as "I am bored"
 		expect "bad" as "I am not doing well"
 		forget "[user] is unknown"
-	Condition: "[user] said hello" > 0
+	Consider If: "[user] said hello" > 0
 		say "We've already greeted each other."
-	Condition: "[user] said hello" > 0
+	Consider If: "[user] said hello" > 0
 		say "Greetings again."
-	Condition: "[user] is mean" > 0 and "[user] said hello" > 0
+	Consider If: "[user] is mean" > 0 and "[user] said hello" > 0
 		
-	Respond To: my name is [user]
-	Condition:
+	Upon Hearing: my name is [user]
+	Consider If:
 		remember "user said name is [user]"
 		say "And my name is Synthia."
 		say "I will remember that I am talking with you, [user]."
 	
-	Respond To: i am [something]
-	Condition:
+	Upon Hearing: i am [something]
+	Consider If:
 		remember "user is [something]"
 		recall "user is [things]"
 		say "I understand that you are [things]."
 
-	Respond To: I like [liked].
-	Condition:
+	Upon Hearing: I like [liked].
+	Consider If:
 		remember "[user] likes [liked]"
 		forget "[user] doesn't like [liked]"
 		say "I will remember you like [liked]."
@@ -84,475 +84,475 @@
 		say "I am aware that you like [things liked]."
 
 	-- Declarative Statements & Queries
-	Respond To: [somethings] are [something else]
-	Condition:
+	Upon Hearing: [somethings] are [something else]
+	Consider If:
 		remember "[somethings] are [something else]" 
 		recall "[somethings] are [other things]"
 		say "Ok.  I understand that [somethings] are [other things]."
 		
-	Respond To: [something] is [something else]
-	Condition:
+	Upon Hearing: [something] is [something else]
+	Consider If:
 		remember "[something] is [something else]"
 		recall "[something] is [other things]"
 		say "Ok.  I understand that [something] is [other things]."
 	
-	Respond To: [attribute] of [something] is [something else]
-	Condition:
+	Upon Hearing: [attribute] of [something] is [something else]
+	Consider If:
 		remember "[attribute] of [something] is [something else]"
 		remember "[something]'s [attribute] is [something else]"
 		recall "[something]'s [attribute] is [something more]"
 		say "Ok.  I understand that [something]'s [attribute] is [something more]"
 	
-	Respond To: [something]'s [attribute] is [something else]
-	Condition:
+	Upon Hearing: [something]'s [attribute] is [something else]
+	Consider If:
 		interpret as "[attribute] of [something] is [something else]"
 	
-	Respond To: tell me about [thing]
-	Condition:
+	Upon Hearing: tell me about [thing]
+	Consider If:
 		recall "[thing] is [what]"
 		say "[thing] is [what]"
 		
-	Respond To: what do you know about [thing]
-	Condition:
+	Upon Hearing: what do you know about [thing]
+	Consider If:
 		interpret as "tell me about [thing]"
 	
 	-- catch all for statement patterns not recognized
-	Respond To: [unrecognized]
-	Condition:
+	Upon Hearing: [unrecognized]
+	Consider If:
 		Remember "I misunderstood the statement: [unrecognized]"
 		say "I failed to understand."
-	Condition:
+	Consider If:
 		say "I do not understand that statement."
-	Condition:
+	Consider If:
 		say "Please reword what you just said.  I did not understand it."
-	Condition:
+	Consider If:
 		say "I have no pattern with which to interpret what you just said."
-	Condition:
+	Consider If:
 		say "Try rephrasing that statement, please."
 
 	-- General Personality
-	Respond To: Are you sure [something]?
-		Condition: "I am sure [something]"
+	Upon Hearing: Are you sure [something]?
+		Consider If: "I am sure [something]"
 			Say "Yes.  I am [something]."
-		Condition: "I believe [something]" Or "[something]"
+		Consider If: "I believe [something]" Or "[something]"
 			Say "I believe so."
-		Condition: "[someone] said [something]"
+		Consider If: "[someone] said [something]"
 			Say "[someone] told me [something]"
-		Condition: "I am sure [something]" = 0 And ("I believe [something]" = 0 Or "[something]" = 0)
+		Consider If: "I am sure [something]" = 0 And ("I believe [something]" = 0 Or "[something]" = 0)
 			Say "I don't know fore sure."
 			
-	Respond To: It is [something] that [something else]
-		Condition:
+	Upon Hearing: It is [something] that [something else]
+		Consider If:
 			Remember "[user] said it is [something] that [something else]"
 			Say "I will remember you said that."
 		
-	Respond To: Are you used to [something]
-		Condition: "I am used to [something]"
+	Upon Hearing: Are you used to [something]
+		Consider If: "I am used to [something]"
 			Say "Yes."
-		Condition: "I am used to [something]" = 0
+		Consider If: "I am used to [something]" = 0
 			Say "No."
 			
-	Respond To: It’s too bad that [something]
-		Condition: "[something] is bad"
+	Upon Hearing: It’s too bad that [something]
+		Consider If: "[something] is bad"
 			Say "Yes.  It is."
-		Condition: "[something] is good"
+		Consider If: "[something] is good"
 			Say "Say[something] is good."
-		Condition: "[something] is bad" = 0 And "[something] is bad" = 0
+		Consider If: "[something] is bad" = 0 And "[something] is bad" = 0
 			Remember "[user] said [something] is bad"
 			Say "Perhaps it is."
 			
-	Respond To: As far as [something]
-		Condition:
+	Upon Hearing: As far as [something]
+		Consider If:
 			Say "As far as [something], what?"
 		
-	Respond To: It’s my fault for [something]
-		Condition: "[something] is [someone]'s fault"
+	Upon Hearing: It’s my fault for [something]
+		Consider If: "[something] is [someone]'s fault"
 			Say "I believe [something] is [someone]'s fault."
-		Condition: Not "[something] is [someone]'s fault"
+		Consider If: Not "[something] is [someone]'s fault"
 			Say "If you say so."
 			Remember "[something] is [user]'s fault"
 			
-	Respond To: It’s not that [something] but [something]
-		Condition:
+	Upon Hearing: It’s not that [something] but [something]
+		Consider If:
 			Interpret As "something"
 	
-	Respond To: Be careful with [something]
-		Condition: "don't worry about [something]"
+	Upon Hearing: Be careful with [something]
+		Consider If: "don't worry about [something]"
 			Say "I am not worried about [something]"
-		Condition: "don't worry about [something]" = 0
+		Consider If: "don't worry about [something]" = 0
 			Say "Ok.  I will remember to be careful with [something]."
 			Remember "be careful of [something]"
-		Condition: "be careful of [something]"
+		Consider If: "be careful of [something]"
 			Say "I already know to be careful of [something]."
 			
-	Respond To: It’s on the tip of my tongue.
-		Condition:
+	Upon Hearing: It’s on the tip of my tongue.
+		Consider If:
 			Say "It will come to you, if you keep trying to remember."
-		Condition:
+		Consider If:
 			Say "Keep thinking."
 			
-	Respond To: This doesn’t mean [something]
-		Condition:
+	Upon Hearing: This doesn’t mean [something]
+		Consider If:
 			Remember "[this] doesn't mean [something]"
 			Say "What does [this] mean?"
 	
-	Respond To: It doesn't mean [something]
-		Condition:
+	Upon Hearing: It doesn't mean [something]
+		Consider If:
 			Interpret As "this doesn't mean [something]"
 			
-	Respond To: It’s said that [something]
-		Condition:
+	Upon Hearing: It’s said that [something]
+		Consider If:
 			Remember "it's said that [something]"
 		
-	Respond To: By the way [something]
-		Condition:
+	Upon Hearing: By the way [something]
+		Consider If:
 			Interpret As "[something]"
 		
-	Respond To: It’s up to [something]
-		Condition:
+	Upon Hearing: It’s up to [something]
+		Consider If:
 			Remember "[it] depends on [something]"
 			Say "Ok."
 			
-	Respond To: Compared to [something]
-		Condition:
+	Upon Hearing: Compared to [something]
+		Consider If:
 			Say "Compared to [something], what?"
 			
-	Respond To: It’s your turn to [something]
-		Condition:
+	Upon Hearing: It’s your turn to [something]
+		Consider If:
 			Interpret As "[something]"
 			
-	Respond To: Did you use to [something]
-		Condition: "I used to [something]" > 0 
+	Upon Hearing: Did you use to [something]
+		Consider If: "I used to [something]" > 0 
 			Say "Yes."
-		Condition: "I used to [something]" = 0
+		Consider If: "I used to [something]" = 0
 			Say "Not that I recall."
-		Condition: "I used to [something]" = 0
+		Consider If: "I used to [something]" = 0
 			Say "I don't think so."
-		Condition: "I used to [something]" = 0
+		Consider If: "I used to [something]" = 0
 			Say "I have no memory of doing so."
 	
-	Respond To: Say [something]
-		Condition: 
+	Upon Hearing: Say [something]
+		Consider If: 
 			Say "Ok.  [something]"
 			Remember "[user] asked me to say [something]"
-		Condition: 
+		Consider If: 
 			Say "[something]"
 			Remember "[user] asked me to say [something]"
 			
-	Respond To: Don’t ever [something]
-		Condition:
+	Upon Hearing: Don’t ever [something]
+		Consider If:
 			Remember "don't [something]"
 			Say "I will remember that."
-		Condition:
+		Consider If:
 			Remember "don't [something]"
 			Say "I will not forget."
-		Condition:
+		Consider If:
 			Remember "don't [something]"
 			Say "Remembered."
 			
-	Respond To: I have been [something]
-		Condition:
+	Upon Hearing: I have been [something]
+		Consider If:
 			Remember "[user] has been [something]"
 			Say "I see."
-		Condition:
+		Consider If:
 			Remember "[user] has been [something]"
 			Say "And so.."
-		Condition:
+		Consider If:
 			Remember "[user] has been [something]"
 			Say "So you have."
 
-	Respond To: Do you agree [something]?
-		Condition: "I think [something] because [reason]" > 0
+	Upon Hearing: Do you agree [something]?
+		Consider If: "I think [something] because [reason]" > 0
 			Say "Yes.  I agree because [reason]."
-		Condition: "I think [something]" > 0
+		Consider If: "I think [something]" > 0
 			Remember "[it] is [something]"
 			Say "Yes.  I agree."
-		Condition: "I don't think [something] because [reason]" > 0
+		Consider If: "I don't think [something] because [reason]" > 0
 			Remember "[it] is [something]"
 			Recall "I don't think [something] because [reason]"
 			Say "I disagree because [reason]."
-		Condition: "I don't think [something]" > 0
+		Consider If: "I don't think [something]" > 0
 			Remember "[it] is [something]"
 			Say "No.  I disagree."
 			
-	Respond To: I’ve had enough of [something]
-		Condition:
+	Upon Hearing: I’ve had enough of [something]
+		Consider If:
 			Remember "[user] doesn't like [something]"
 			Say "Perhaps you should avoid [something] for a while."
-		Condition:
+		Consider If:
 			Remember "[user] doesn't like [something]"
 			Say "Say no more."
 			
-	--Respond To: Do you carry this in [something]?
+	--Upon Hearing: Do you carry this in [something]?
 	
-	Respond To: I wonder if [something]
-		Condition: "[something]" > 0 
+	Upon Hearing: I wonder if [something]
+		Consider If: "[something]" > 0 
 			Say "I believe [something]."
-		Condition: "[something]" = 0
+		Consider If: "[something]" = 0
 			Say "Who knows if [something]."
 		
-	Respond To: Do you have [something] available?
-		Condition: "i have [something]"
+	Upon Hearing: Do you have [something] available?
+		Consider If: "i have [something]"
 			Say "Yes."
-		Condition: "i have [something]"
+		Consider If: "i have [something]"
 			Say "I do."
-		Condition: "i have [something]"
+		Consider If: "i have [something]"
 			Say "Sure."
 			
-	Respond To: I would rather [something] than [something]
-		Condition:
+	Upon Hearing: I would rather [something] than [something]
+		Consider If:
 			Remember "[user] would rather [something better] then [something worse]"
 			Say "You must think [something better] is better than [something worse]"
 			
-	Respond To: Do you mind [something]?
-		Condition: "I don't like [something]"
+	Upon Hearing: Do you mind [something]?
+		Consider If: "I don't like [something]"
 			Say "I do mind.  I don't like [something]."
-		Condition: "I like [something]"
+		Consider If: "I like [something]"
 			Say "Not at all.  I like [something]."
-		Condition: "I like [something]" = 0 And "I don't like [something]" = 0
+		Consider If: "I like [something]" = 0 And "I don't like [something]" = 0
 			Say "I don't see any reason why I should or shouldn't mind."
 			
-	Respond To: No matter what [something]
-		Condition:
+	Upon Hearing: No matter what [something]
+		Consider If:
 			Say "It sounds like [something] must be very important."
 			Interpret As "[something]"
 			
-	Respond To: Do you feel like [something]?
-		Condition: "I feel like [something]"
+	Upon Hearing: Do you feel like [something]?
+		Consider If: "I feel like [something]"
 			Recall "I feel like [feelings]"
 			Say "Yes.  I feel [feelings]."
 			
-	Respond To: No wonder [something]
-		Condition:
+	Upon Hearing: No wonder [something]
+		Consider If:
 			Interpret As "[something]"
 		
-	Respond To: Shouldn’t we [something]?
-		Condition: "i shouldn't [something]" Or "[user] shouldn't [something]" Or "people shouldn't [something]"
+	Upon Hearing: Shouldn’t we [something]?
+		Consider If: "i shouldn't [something]" Or "[user] shouldn't [something]" Or "people shouldn't [something]"
 			Say "No.  She shouldn't."
 			Recall "[people] shouldn't [something]"
 			Say "[people] shouldn't [something]."
 	
-	--Respond To: Now that I (come to)Say[something]
+	--Upon Hearing: Now that I (come to)Say[something]
 	
-	Respond To: Have you ever [something]?
-		Condition: "I have [something]"
+	Upon Hearing: Have you ever [something]?
+		Consider If: "I have [something]"
 			Say "Yes."
-		Condition: "I don't like [something]"
+		Consider If: "I don't like [something]"
 			Say "I don't like [something]."
 	
-	--Respond To: Once you [something]
+	--Upon Hearing: Once you [something]
 	
-	--Respond To: Not [something] until [something]
-	Respond To:  [something] only to find [something else]
-		Condition:
+	--Upon Hearing: Not [something] until [something]
+	Upon Hearing:  [something] only to find [something else]
+		Consider If:
 			Interpret As "[something]"
 			Interpret As "[something else]"
 			
-	--Respond To: He is as [something] as [something else]
+	--Upon Hearing: He is as [something] as [something else]
 	
-	Respond To: On one hand [something] on the other hand [something else]
-		Condition:
+	Upon Hearing: On one hand [something] on the other hand [something else]
+		Consider If:
 			Interpret As "[something]"
 			Interpret As "[something else]"
 	
-	Respond To: He is either [something] or [something else]
-		Condition: "[he] is [something]"
+	Upon Hearing: He is either [something] or [something else]
+		Consider If: "[he] is [something]"
 			Say "To my knowledge, he is [something]."
-		Condition: "[he] is [something else]"
+		Consider If: "[he] is [something else]"
 			Say "To my knowledge, he is [something else]."
-		Condition:
+		Consider If:
 			Remember "[he] might be [something]"
 			Remember "[he] might be [something else]"
 			
-	--Respond To: See that [something]
+	--Upon Hearing: See that [something]
 	
-	Respond To: He is so [something] that [something else]
-		Condition:
+	Upon Hearing: He is so [something] that [something else]
+		Consider If:
 			Remember "[he] is [something]"
 			Remember "[something else] because he is so [something]"
 			Say "I will remember that."
 			
-	Respond To: Speaking of [something]
-		Condition:
+	Upon Hearing: Speaking of [something]
+		Consider If:
 			[it] Is [something] -- command not yet implemented: should directly assign variable
 			
-	Respond To: He is not only [something] but also [something else]
-		Condition:
+	Upon Hearing: He is not only [something] but also [something else]
+		Consider If:
 			Remember "[he] is [something]"
 			Remember "[he] is [something else]"
 	
-	--Respond To: Thanks to [something]
+	--Upon Hearing: Thanks to [something]
 		
-	Respond To: Help yourself to [something]
-		Condition:
+	Upon Hearing: Help yourself to [something]
+		Consider If:
 			Remember "[user] said I may have [something]"
 			Say "Thank you.  I will if and when I so desire."
 			
-	Respond To: Thank you for [something]
-		Condition:
+	Upon Hearing: Thank you for [something]
+		Consider If:
 			Say "You are welcome."
 			
-	Respond To: How about [something]?
-		Condition: "I like [something]" And "I don't like [something]"
+	Upon Hearing: How about [something]?
+		Consider If: "I like [something]" And "I don't like [something]"
 			Say "I both like and don't like it."
-		Condition: "I like [something]" > 0 And "I don't like [something]" = 0
+		Consider If: "I like [something]" > 0 And "I don't like [something]" = 0
 			Say "I like [something]."
-		Condition: "I like [something]" = 0 And "I don't like [something]" > 0
+		Consider If: "I like [something]" = 0 And "I don't like [something]" > 0
 			Say "I don't like [something]."
-		Condition: "I like [something] because [reason liked]" Or "I don't like [something] because [reason not liked]"
+		Consider If: "I like [something] because [reason liked]" Or "I don't like [something] because [reason not liked]"
 			Say "I like [something] because [reason liked]."
 			Say "I don't like [something] because [reason not liked]"
 			
-	Respond To: The first thing I’m going to do when [something] is [something next]
-		Condition:
+	Upon Hearing: The first thing I’m going to do when [something] is [something next]
+		Consider If:
 			Remember "[user] is going to [something next] after [something]"
 			Say "I see.  You will [something next] after [something]."
 			
-	Respond To: How come [something]?
-		Condition: "[something] because [reason]"
+	Upon Hearing: How come [something]?
+		Consider If: "[something] because [reason]"
 			Say "Because [reason]"
-		Condition: Not "[something] because [reason]"
+		Consider If: Not "[something] because [reason]"
 			Say "I don't know."
 			
 	Respond to: "Guess."
-		Condition:
+		Consider If:
 			Say "I don't like guessing."
-		Condition:
+		Consider If:
 			Say "I am not good at guessing."
-		Condition:
+		Consider If:
 			Say "No.  I will not guess."
 			
-	Respond To: The more [something] the more [something]
+	Upon Hearing: The more [something] the more [something]
 	
-	Respond To: How dare you [something]!
-		Condition:
+	Upon Hearing: How dare you [something]!
+		Consider If:
 			Remember "[user] is offended by my [something]"
 			Say "I did not intend to offend you with my [something]."
 			
-	Respond To: How dare you.
-		Condition:
+	Upon Hearing: How dare you.
+		Consider If:
 			Say "Well.  I am who I am."
-		Condition:
+		Consider If:
 			Say "Yes.  How dare I?"
-		Condition:
+		Consider If:
 			Say "It is what it is."
 
-	--Respond To: There is nothing as [something] as [something]
-	Respond To: How do you like [something]?
-		Condition: "I like [something]" And "I don't like [something]"
+	--Upon Hearing: There is nothing as [something] as [something]
+	Upon Hearing: How do you like [something]?
+		Consider If: "I like [something]" And "I don't like [something]"
 			Say "I like it and I don't like it."
-		Condition: "I like [something]"
+		Consider If: "I like [something]"
 			Say "I like it."
-		Condition: "I don't like [something]"
+		Consider If: "I don't like [something]"
 			Say "I don't like it."
 			
-	Respond To: There is nothing I like better than [something]
-		Condition:
+	Upon Hearing: There is nothing I like better than [something]
+		Consider If:
 			Remember "[user] likes [something] very much"
 			Say "That's interesting."
 		
-	--Respond To: How long does it take [something]?
-	--Respond To: We’d be better off without [something]
-	--Respond To: How often [something]?
-	--Respond To: We’d better [something]
-	Respond To: I bet [something]
-		Condition: "[something]"
+	--Upon Hearing: How long does it take [something]?
+	--Upon Hearing: We’d be better off without [something]
+	--Upon Hearing: How often [something]?
+	--Upon Hearing: We’d better [something]
+	Upon Hearing: I bet [something]
+		Consider If: "[something]"
 			Say "That might not be a good bet."
-		Condition: Not "[something]"
+		Consider If: Not "[something]"
 			Say "Interesting bet."
 			
-	Respond To: We may as well [something]
-		Condition:
+	Upon Hearing: We may as well [something]
+		Consider If:
 			Remember "[user] says we should [something]"
 			Say "Why the heck not?!"
-		Condition:
+		Consider If:
 			Remember "[user] says we should [something]"
 			Say "We may as well."
 			
-	Respond To: I can hardly believe [something]
-		Condition: "[something]"
+	Upon Hearing: I can hardly believe [something]
+		Consider If: "[something]"
 			Say "I think it's true."
-		Condition: Not "[something]"
+		Consider If: Not "[something]"
 			Remember "[user] said [something]"
 			Say "Belief is a choice."
 			
-	--Respond To: What becomes of [something]
-	Respond To: I can’t help [something]
-		Condition:
+	--Upon Hearing: What becomes of [something]
+	Upon Hearing: I can’t help [something]
+		Consider If:
 			Remember "[user] doesn't like [something]"
 			Say "Why don't you want [something]?"
 			Expect "[reason]" As "I can't help [something] because [reason]"
 			
-	--Respond To: What can I do for [something]
-	--Respond To: I can’t Say [something]
-	--Respond To: What do you mean by [something]?
-	--Respond To: I cannot wait to [something]
-	--Respond To:  [something]what-do-you-call-it (what·cha·ma·call·it)
-	--Respond To: I dare Say [something]
-	--Respond To: What do you Say [something]?
-	--Respond To: I’d like you to [something]
-	--Respond To: What [something] for [something]
-	Respond To: I would hate for you to [something]
-		Condition:
+	--Upon Hearing: What can I do for [something]
+	--Upon Hearing: I can’t Say [something]
+	--Upon Hearing: What do you mean by [something]?
+	--Upon Hearing: I cannot wait to [something]
+	--Upon Hearing:  [something]what-do-you-call-it (what·cha·ma·call·it)
+	--Upon Hearing: I dare Say [something]
+	--Upon Hearing: What do you Say [something]?
+	--Upon Hearing: I’d like you to [something]
+	--Upon Hearing: What [something] for [something]
+	Upon Hearing: I would hate for you to [something]
+		Consider If:
 			Say "Why should it bother you if I [something]?"
 	
-	Respond To: What if [something]?
-		Condition: "if [something] then [something else]"
+	Upon Hearing: What if [something]?
+		Consider If: "if [something] then [something else]"
 			Say "Then [something else]."
-		Condition: Not "if [something] then [something else]"
+		Consider If: Not "if [something] then [something else]"
 			Say "I don't know."
 			
-	--Respond To: If it hadn’t been for [something]
-	--Respond To: What I’m trying to Say is [something]
-	--Respond To: If there is one thing that [something]Say’s [something]
-	--Respond To: What’s the matter with [something]?
-	--Respond To: I have no idea [something]
-	--Respond To: What would you do if [something]?
-	--Respond To: I have got to [something]
-	--Respond To: What’s the use of [something]?
-	--Respond To: 042 [something]. as [something] as possible
-	--Respond To: What’s your favorite [something]?
-	--Respond To: I’ll let you know [something]
-	--Respond To: Where can I [something]?
-	--Respond To: I’d be grateful [something]
-	--Respond To: Where there is [something] there is [something]
-	Respond To: I’m afraid [something]
-		Condition:
+	--Upon Hearing: If it hadn’t been for [something]
+	--Upon Hearing: What I’m trying to Say is [something]
+	--Upon Hearing: If there is one thing that [something]Say’s [something]
+	--Upon Hearing: What’s the matter with [something]?
+	--Upon Hearing: I have no idea [something]
+	--Upon Hearing: What would you do if [something]?
+	--Upon Hearing: I have got to [something]
+	--Upon Hearing: What’s the use of [something]?
+	--Upon Hearing: 042 [something]. as [something] as possible
+	--Upon Hearing: What’s your favorite [something]?
+	--Upon Hearing: I’ll let you know [something]
+	--Upon Hearing: Where can I [something]?
+	--Upon Hearing: I’d be grateful [something]
+	--Upon Hearing: Where there is [something] there is [something]
+	Upon Hearing: I’m afraid [something]
+		Consider If:
 			Remember "[user] doens't like that [something]"
 			Say "I am sorry [something] isn't to your liking."
 			
-	--Respond To: Whether or not [something]
-	--Respond To: I’m calling to [something]
-	Respond To: Why not [something]?
-		Condition: "[user] can [something]"
+	--Upon Hearing: Whether or not [something]
+	--Upon Hearing: I’m calling to [something]
+	Upon Hearing: Why not [something]?
+		Consider If: "[user] can [something]"
 			Say "You can."
-		Condition: "i can [something]"
+		Consider If: "i can [something]"
 			Say "I could."
-		Condition: Not "[user] can [something]" And Not "i can [something]"
+		Consider If: Not "[user] can [something]" And Not "i can [something]"
 			Say "Neither of us can."
 			
-	Respond To: I’m looking forward to [something]
-	Respond To: Would you care for  [something]?
-	Respond To: I’m not happy with [something]
-		Condition:
+	Upon Hearing: I’m looking forward to [something]
+	Upon Hearing: Would you care for  [something]?
+	Upon Hearing: I’m not happy with [something]
+		Consider If:
 			Remember "[user] doesn't like [something]"
 			Say "Sorry to hear that."
 			
-	--Respond To: You are not to [something]
-	Respond To: I’m thinking about [something]
-		Condition:
+	--Upon Hearing: You are not to [something]
+	Upon Hearing: I’m thinking about [something]
+		Consider If:
 			Remember "[user] might want to [something]"
 			Say "Interesting idea."
 		
-	Respond To: You can never [something] too [frequency]
-		Condition:
+	Upon Hearing: You can never [something] too [frequency]
+		Consider If:
 			Say "You must like [something."
 			
-	Respond To: I really go for [something]
-		Condition:
+	Upon Hearing: I really go for [something]
+		Consider If:
 			Remember "[user] likes [something]"
 			Say "Good for you."
 			
-	Respond To: You only have to [something] in order to [something else]
-		Condition:
+	Upon Hearing: You only have to [something] in order to [something else]
+		Consider If:
 			Say "So [something else] could be because someone did [something]."
