@@ -1,12 +1,3 @@
-
-Machine Agent Engine
-Copyright (C) 2012, 2018 By Matthew C. Tedder
-  Phone: 509-432-5520
-  Email: matthewct@gmail.com
-License: Refer to the LICENSE file (GNU LGPL)
-
-
-
 # BSAgent 
 
 A simple engine for emplementing a chatbot that is programmed thru a simple
@@ -117,7 +108,7 @@ Matthew C. Tedder (matthewct@gmail.com)
 
 ## License
 
-GNU LGPL License
+Refer to the LICENSE file (GNU LGPL)
 
 ## Acknowledgments
 
