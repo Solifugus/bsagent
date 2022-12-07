@@ -374,7 +374,7 @@
 			
 	Upon Hearing: Speaking of [something]
 		Consider If:
-			[it] Is [something] -- command not yet implemented: should directly assign variable
+			Remember "[it] Is [something]"
 			
 	Upon Hearing: He is not only [something] but also [something else]
 		Consider If:
@@ -414,7 +414,7 @@
 		Consider If: Not "[something] because [reason]"
 			Say "I don't know."
 			
-	Respond to: "Guess."
+	Upon Hearing: "Guess."
 		Consider If:
 			Say "I don't like guessing."
 		Consider If:
@@ -556,3 +556,8 @@
 	Upon Hearing: You only have to [something] in order to [something else]
 		Consider If:
 			Say "So [something else] could be because someone did [something]."
+
+	Upon Hearing: [anything]
+		Consider If:
+			say "Please rephrase that."
+

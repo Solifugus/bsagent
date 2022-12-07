@@ -54,7 +54,7 @@ function BSAgent( script ) {
 		
 		var response = '';
 		
-		$('#debug').append('Received statement "' + user_statement + '"<br/>');  // DEBUG
+		#console.log('Received statement "' + user_statement );  // DEBUG
 		
 		// Special Meta Commands
 		/*
@@ -589,6 +589,7 @@ function BSAgent( script ) {
 	
 	//////////////////// MindScript Importation ///////////////////
 	this.importScript = function importScript( script, refresh ) {
+		console.log('Importing Script (length:'+script.length+')'); // XXX
 		if( refresh != true ) refresh = false;  // Republican Logic
 		
 		// First meaning is global context--always matched
@@ -773,7 +774,7 @@ function showMessage( message ) {
 };
 
 function logMessage( message ) {
-	$('#debug').append( message + '<br/>' );
+	console.log( message );
 };
 
 
@@ -886,4 +887,3 @@ function isSynonym( synonym_groups, text, position ) {
 }
 
 module.exports = BSAgent;
-
